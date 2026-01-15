@@ -8,7 +8,7 @@ import Icon from "@/components/Icon.vue";
     <ul class="info-list">
       <li>
         <Icon
-            icon="/icons/mail.svg"
+            icon="/website/icons/mail.svg"
             alt="Mail icon"
         />
         <div>
@@ -18,7 +18,7 @@ import Icon from "@/components/Icon.vue";
       </li>
       <li>
         <Icon
-            icon="/icons/phone.svg"
+            icon="/website/icons/phone.svg"
             alt="Phone icon"
         />
         <div>
@@ -28,7 +28,7 @@ import Icon from "@/components/Icon.vue";
       </li>
       <li>
         <Icon
-            icon="/icons/location.svg"
+            icon="/website/icons/location.svg"
             alt="Location icon"
         />
         <div>
