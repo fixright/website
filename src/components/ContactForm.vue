@@ -11,7 +11,7 @@ const sendEmail = () => {
 
   const subject = `New Inquiry from ${name.value}`;
 
-  const body = "Name: ${name.value}\nEmail: ${email.value}\nMessage:\n${message.value}\n";
+  const body = `Name: ${name.value}\nEmail: ${email.value}\nMessage:\n${message.value}\n`;
   window.location.href = `mailto:${destinationEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 };
 </script>
