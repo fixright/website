@@ -7,7 +7,7 @@
   --color-bg-light: #FEFEFF;
   --color-bg-dark: #F8FAFC;
   --color-border: rgba(0, 0, 0, 0.5);
-  --border-radius: 10px;
+  --border-radius: 8px;
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --max-width: 1200px;
 }
