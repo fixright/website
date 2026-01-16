@@ -16,7 +16,7 @@ defineProps({
 
 
 <template>
-  <section class="contact">
+  <section id="contact" class="contact">
     <div class="container">
       <div class="title">
         <h2>{{title}}</h2>

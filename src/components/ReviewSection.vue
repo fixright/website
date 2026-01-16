@@ -14,7 +14,7 @@ defineProps({
 </script>
 
 <template>
-  <section id="contact" class="testimonials">
+  <section class="testimonials">
     <div class="container">
       <h2>{{ title }}</h2>
       <p class="section-desc">{{ subtitle }}</p>
