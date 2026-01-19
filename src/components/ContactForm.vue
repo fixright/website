@@ -53,5 +53,10 @@ const sendEmail = () => {
   background: #f4f4f4;
 }
 .field textarea { height: 100px; resize: vertical; }
-.submit-btn { width: 100%; }
+.submit-btn {
+  width: 100%;
+  height: 35px;
+}
+
+
 </style>

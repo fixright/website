@@ -1,6 +1,5 @@
 <script setup>
-import ImageCard from "@/components/ImageCard.vue";
-import Icon from "@/components/Icon.vue";
+import { ref, computed } from 'vue';
 
 defineProps({
   title: {
@@ -12,31 +11,37 @@ defineProps({
     default: 'Default Subtitle'
   }
 })
+
+const images = ref([
+  { src: '/website/images/image1.jpg', alt: 'Image 1' },
+  { src: '/website/images/image2.jpg', alt: 'Image 2' },
+  { src: '/website/images/image3.jpg', alt: 'Image 3' },
+]);
+
+// FIX: Duplicate the array 4 times.
+// This ensures the track is long enough for even the widest monitors.
+const allImages = computed(() => [
+  ...images.value,
+  ...images.value,
+  ...images.value,
+  ...images.value
+]);
 </script>
 
 <template>
   <section id="gallery" class="gallery">
     <div class="container">
-      <h2>{{title}}</h2>
-      <p class="section-desc">{{ subtitle }}</p>
+      <div class="title">
+        <h2>{{ title }}</h2>
+        <p class="section-desc">{{ subtitle }}</p>
+      </div>
 
-      <div class="grid">
-
-        <ImageCard
-            icon="/website/images/image1.jpg"
-            alt="Image1"
-        />
-
-        <ImageCard
-            icon="/website/images/image2.jpg"
-            alt="Image2"
-        />
-
-        <ImageCard
-            icon="/website/images/image3.jpg"
-            alt="Image3"
-        />
-
+      <div class="slider-window">
+        <div class="slider-track">
+          <div v-for="(img, index) in allImages" :key="index" class="slanted-card">
+            <img :src="img.src" :alt="img.alt" />
+          </div>
+        </div>
       </div>
 
     </div>
@@ -45,42 +50,65 @@ defineProps({
 
 <style scoped>
 .gallery {
-  padding-bottom: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-  text-align: center;
+  text-align: left;
+  overflow: hidden;
+}
+
+.title {
+  padding: 50px;
 }
 
 .container {
-  padding: 50px 20px;
-  max-width: var(--max-width);
+  max-width: 100%;
   margin: 0 auto;
 }
 
 .section-desc {
-  color: var(--color-text-light);
-  margin-bottom: 10px;
+  color: #666;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  justify-content: center;
-  gap: 10px;
+.slider-window {
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
-@media (max-width: 1200px) {
-  .grid {
-    grid-template-columns: repeat(2, auto);
+.slider-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 20s linear infinite;
+}
+
+.slider-track:hover {
+  animation-play-state: paused;
+}
+
+.slanted-card {
+  width: 400px;
+  height: 250px;
+  position: relative;
+  overflow: hidden;
+  transform: skewX(-10deg);
+  border-right: 4px solid white;
+  background: #ccc;
+  backface-visibility: hidden;
+  margin-right: -1px;
+}
+
+.slanted-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: skewX(10deg) scale(1.2);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
   }
-}
-
-@media (max-width: 820px) {
-  .grid {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  100% {
+    transform: translateX(-25%);
   }
 }
 </style>

@@ -18,9 +18,9 @@ defineProps({
 <template>
   <section id="contact" class="contact">
     <div class="container">
-      <div class="title">
-        <h2>{{title}}</h2>
-        <p class="section-desc">{{subtitle}}</p>
+      <div class="title-block">
+        <h2>{{ title }}</h2>
+        <p class="section-desc">{{ subtitle }}</p>
       </div>
 
       <div class="content-wrapper">
@@ -35,10 +35,9 @@ defineProps({
 
 <style scoped>
 
-.title
+.title-block
 {
-  text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 }
 
 .contact {

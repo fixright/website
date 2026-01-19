@@ -16,8 +16,10 @@ defineProps({
 <template>
   <section id="services" class="services">
     <div class="container">
-      <h2>{{title}}</h2>
-      <p class="section-desc">{{ subtitle }}</p>
+      <div class="title-block">
+        <h2>{{ title }}</h2>
+        <p class="section-desc">{{ subtitle }}</p>
+      </div>
 
       <div class="grid">
         <ServiceCard
@@ -90,28 +92,32 @@ defineProps({
   padding-bottom: 20px;
   padding-left: 20px;
   padding-right: 20px;
-  text-align: center;
+  background-color: var(--color-bg-dark);
+
+}
+
+.title-block {
+  padding: 50px;
 }
 
 .container {
-  padding: 50px 20px;
-  max-width: var(--max-width);
   margin: 0 auto;
 }
 
 .section-desc {
   color: var(--color-text-light);
-  margin-bottom: 10px;
 }
 
 .grid {
+  padding-left: 50px;
+  padding-right: 50px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 1080px) {
   .grid {
     grid-template-columns: 1fr;
   }

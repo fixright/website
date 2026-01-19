@@ -1,5 +1,7 @@
 <template>
   <main>
+    <Header />
+
     <HeroSection
         title="FixRight Home Repairs Company"
         subtitle="A small call-out home repairs company funded by Enterprise Ireland. <br> With experience over 2 years."
@@ -37,4 +39,5 @@ import ReviewSection from '@/components/ReviewSection.vue'
 import ContactSection from '@/components/ContactSection.vue'
 import GallerySection from "@/components/GallerySection.vue";
 import MapSection from "@/components/MapSection.vue";
+import Header from "@/components/Header.vue";
 </script>

@@ -21,10 +21,11 @@ defineProps({
 
 <style scoped>
 .card {
-  border: 1px solid var(--color-border);
-  border-radius: var(--border-radius);
+  background-color: white;
   padding: 30px;
   text-align: left;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius);
 }
 
 .desc {

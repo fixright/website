@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from 'vue'; // Import computed
 import ReviewCard from "@/components/ReviewCard.vue";
 
 defineProps({
@@ -11,34 +12,54 @@ defineProps({
     default: 'Default Subtitle'
   }
 })
+
+const reviews = [
+  {
+    rating: "5",
+    name: "Sarah J.",
+    text: "I hired them to revamp our home office, and I couldn't be happier. They handled everything from installing a new partition wall to laying down new flooring. It was so much easier hiring one team to do it all rather than coordinating different contractors."
+  },
+  {
+    rating: "5",
+    name: "Mike T.",
+    text: "Had a nightmare with a leaky sink and a clogged drain that I couldn't fix myself. They came out quickly, fixed the plumbing issues, and while they were here, I had them install a new water heater. Knowledgeable, polite, and fair pricing."
+  },
+  {
+    rating: "5",
+    name: "Elena R.",
+    text: "Our backyard needed serious help. They repaired our fence, cleaned out the gutters, and even built a new garden shed for us. The quality of the outdoor work is top-notch. It feels like we have a whole new garden patio area now."
+  }
+]
+
+// FIX 1: Duplicate the data 4 times
+// This creates a long enough track for wide screens without manual HTML duplication
+const allReviews = computed(() => [
+  ...reviews,
+  ...reviews,
+  ...reviews,
+  ...reviews
+]);
 </script>
 
 <template>
-  <section class="testimonials">
+  <section id="reviews" class="testimonials">
     <div class="container">
-      <h2>{{ title }}</h2>
-      <p class="section-desc">{{ subtitle }}</p>
+      <div class="title-block">
+        <h2>{{ title }}</h2>
+        <p class="section-desc">{{ subtitle }}</p>
+      </div>
 
-      <div class="grid">
-        <ReviewCard
-            rating="5"
-            name="Sarah J."
-            text="I hired them to revamp our home office, and I couldn't be happier. They handled everything from installing a new partition wall to laying down new flooring. It was so much easier hiring one team to do it all rather than coordinating different contractors. The finish is professional, and they left the place spotless."
-        />
+      <div class="slider">
+        <div class="slide-track">
+          <div v-for="(review, index) in allReviews" :key="index" class="slide">
+            <ReviewCard
+                :rating="review.rating"
+                :name="review.name"
+                :text="review.text"
+            />
+          </div>
 
-        <ReviewCard
-            rating="5"
-            name="Mike T."
-            text="Had a nightmare with a leaky sink and a clogged drain that I couldn't fix myself. They came out quickly, fixed the plumbing issues, and while they were here, I had them install a new water heater. knowledgeable, polite, and very fair pricing. I’ll definitely be calling them back for our bathroom upgrade next month."
-        />
-
-        <ReviewCard
-            rating="5"
-            name="Elena R."
-            text="Our backyard needed serious help. They repaired our fence, cleaned out the gutters, and even built a new garden shed for us. The quality of the outdoor work is top-notch. It feels like we have a whole new garden patio area now. Highly recommend for any exterior projects!"
-        />
-
-
+        </div>
       </div>
     </div>
   </section>
@@ -46,14 +67,17 @@ defineProps({
 
 <style scoped>
 .testimonials {
+  padding-bottom: 20px;
   background-color: var(--color-bg-dark);
-  text-align: center;
+  overflow: hidden;
 }
 
 .container {
-  padding: 50px 20px;
-  max-width: var(--max-width);
   margin: 0 auto;
+}
+
+.title-block {
+  padding: 70px;
 }
 
 .section-desc {
@@ -61,17 +85,37 @@ defineProps({
   margin-bottom: 10px;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+.slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 10px 0;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
+.slide-track {
+  display: flex;
+  width: max-content;
+  gap: 20px;
+  animation: scroll 40s linear infinite;
+}
 
-@media (max-width: 768px) {
-  .grid {
-    grid-template-columns: 1fr;
+.slide-track:hover {
+  animation-play-state: paused;
+}
+
+.slide {
+  width: 350px;
+  flex-shrink: 0;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-25%);
   }
 }
-
 </style>

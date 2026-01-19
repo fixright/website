@@ -34,10 +34,11 @@ defineProps({
 
 .outline {
   background-color: transparent;
-  border-color: var(--color-border);
-  color: var(--color-text-main);
+  border-color: white;
+  color: white;
+  opacity: 0.8;
 }
 .outline:hover {
-  border-color: var(--color-text-main);
+  opacity: 1;
 }
 </style>
