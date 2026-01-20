@@ -34,7 +34,7 @@ defineProps({
           <l-map
               ref="map"
               v-model:zoom="zoom"
-              :center="[51.8915, -8.4716]"
+              :center="[53.8514, -9.2914]"
               :use-global-leaflet="false"
               :options="{ scrollWheelZoom: isInteractive }"
           >
@@ -45,7 +45,7 @@ defineProps({
                 name="CartoDB Positron"
             ></l-tile-layer>
 
-            <l-marker :lat-lng="[51.8985, -8.4756]">
+            <l-marker :lat-lng="[53.8544, -9.2974]">
               <l-popup>
                 <div class="custom-popup">
                   <strong>We are here!</strong><br>
